@@ -6,15 +6,7 @@ import * as fs from 'fs';
 const BigNumber = require('bignumber.js');
 import csvAppend from "csv-append";
 
-const start = stringToTimestamp('01-03-2022')
-const finish = stringToTimestamp('14-03-2022')
-// const date = new Date();
-// date.setDate(date.getDate() - 2);
-// console.log(date, start, finish);
-// const start = date.getTime();
-// const finish = Date.now();
-console.log(start)
-console.log(finish)
+
 
 const hotWallet = 'TT2YwaJ8DXsrpycgBGDWEei1FUQm6YT85T';
 const hexHotWallet = '41bb1c07fe4b04a06227f65530155566cde3fee65e'
@@ -71,16 +63,14 @@ const main = async (wallet: string, minT: number, maxT: number, fee: number, i: 
 
 // console.log(y.isNaN());
 
+const start = stringToTimestamp('30-03-2022')
+const finish = stringToTimestamp('17-04-2022')
 
-main(subWallet, start, finish, 0, 0, true, 'subsidy_march_2022')
-    // .then((res) => process.exit(0))
+main(subWallet, start, finish, 0, 0, true, 'subsidy_0330_0417_2022')
+    .then(() => main(hotWallet, start, finish, 0, 0, false, 'hot_0330_0417_2022'))
+    .then((res) => process.exit(0))
     .catch((error) => {
         console.error(error);
     });
-// main(hotWallet, start, finish, 0, 0, false, 'hot_march_2022')
-//     .then((res) => process.exit(0))
-//     .catch((error) => {
-//         console.error(error);
-//     });
 
 

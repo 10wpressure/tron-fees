@@ -10,7 +10,35 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/db/hot_march_14_30_2022.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/db/hot_march_2022.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/db/jan_feb_hotwallet_2022.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/db/jan_feb_sub_dep_2022.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/db/subsidy_march_14_30_2022.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

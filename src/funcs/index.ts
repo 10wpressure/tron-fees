@@ -35,7 +35,7 @@ const getRequest = async (endpoint: string) => {
 };
 
 let feesTotal: number = 0;
-export const getTrxFeesByHeight = async (address: string, hexSubsidy: string, hexHot: string, minTimestamp: number, maxTimestamp: number, fee: number, i: number, j: number, isSubsidyTx: boolean): Promise<IFeesResult> => {
+export const getTrxFeesByHeight = async (address: string, hexSubsidy: string, hexHot: string, minTimestamp: number, maxTimestamp: number, fee: number, i: number, j: number, isSubsidyWallet: boolean): Promise<IFeesResult> => {
     try {
         // const contractAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'; // USDT
         // Make sure its 13 digits - ms are needed in request
@@ -88,9 +88,11 @@ export const getTrxFeesByHeight = async (address: string, hexSubsidy: string, he
         }
         transactions.forEach((tx, key, arr) => {
             let currentTxFee = 0;
+            const isSubsidyTransaction = isSubsidyWallet &&
+                tx.raw_data.contract[0].parameter.value.owner_address === hexSubsidy &&
+                tx.raw_data.contract[0].parameter.value.to_address !== hexHot;
 
-            if (isSubsidyTx && tx.raw_data.contract[0].parameter.value.owner_address === hexSubsidy &&
-                tx.raw_data.contract[0].parameter.value.to_address !== hexHot &&
+            if (isSubsidyTransaction &&
                 !isNaN(tx.raw_data.contract[0].parameter.value.amount)) {
                 currentTxFee += tx.raw_data.contract[0].parameter.value.amount;
             }
@@ -108,7 +110,8 @@ export const getTrxFeesByHeight = async (address: string, hexSubsidy: string, he
                 date: timeConverter(tx.block_timestamp / 1000),
                 fee: currentTxFee,
                 totalSun: feesTotal,
-                totalTrx: feesTotal / 1000000
+                totalTrx: feesTotal / 1000000,
+                isSubsidyTx: isSubsidyTransaction,
             })
 
             if (debug) {

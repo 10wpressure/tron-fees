@@ -122,6 +122,7 @@ export interface ITxFee {
     fee: number,
     totalSun: number,
     totalTrx: number,
+    isSubsidyTx: boolean,
 }
 
 export interface IFeesResult {
